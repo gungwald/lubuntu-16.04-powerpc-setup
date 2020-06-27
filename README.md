@@ -1,5 +1,46 @@
 # lubuntu-16.04-powerpc-setup
+
 Files and instructions on how to setup Lubuntu on a PowerPC Mac
+
+# Stupid USB boot instructions
+
+To boot into Open Firmware, hold down this key sequence during boot: 
+
+    Option + Apple + O + F
+
+There is no help, so don't bother trying.
+
+Find the location of your usb drive. It will be named disk@n,
+on either usb@18 or usb@19:
+
+    dev /
+    ls
+
+To rescan for an inserted usb drive:
+
+    probe-usb
+
+I think. Sometimes this hangs/crashes and you have to
+reboot.
+
+Set an alias for booting. It must be 'cd' because farther
+along the boot process expects it to be 'cd'. So you must
+overwrite the existing 'cd' devalias.
+
+    devalias cd /pci@f2000000/usb@18/disk@1
+
+To view aliases type:
+
+    devalias
+
+## Extra-stupid boot command
+
+    boot cd:,\\:tbxi
+
+Yea, that's the boot command... Ponder that while you're meditating
+on mushrooms.
+
+# Booting the kernel
 
 The kernel parameter "nomodeset" is required to turn off KMS because the 
 Nvidia drivers and/or frame buffer drivers do not work with KMS.
