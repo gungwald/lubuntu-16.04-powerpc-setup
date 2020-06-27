@@ -4,11 +4,22 @@ Files and instructions on how to setup Lubuntu on a PowerPC Mac
 
 # Stupid USB boot instructions
 
+## First really stupid thing: Cold boot required!
+
+You must do a cold boot. If you don't, at the end of it all,
+it won't be able to find the boot partition 'cd:,\\:tbxi'
+
+## Boot to Open Firmware
+
 To boot into Open Firmware, hold down this key sequence during boot: 
 
     Option + Apple + O + F
 
+## Help in Open Firmware command line
+
 There is no help, so don't bother trying.
+
+## Find USB drive
 
 Find the location of your usb drive. It will be named disk@n,
 on either usb@18 or usb@19:
@@ -21,7 +32,9 @@ To rescan for an inserted usb drive:
     probe-usb
 
 I think. Sometimes this hangs/crashes and you have to
-reboot.
+reboot. So don't actually do that.
+
+## Set an alias for the boot disk
 
 Set an alias for booting. It must be 'cd' because farther
 along the boot process expects it to be 'cd'. So you must
@@ -39,6 +52,10 @@ To view aliases type:
 
 Yea, that's the boot command... Ponder that while you're meditating
 on mushrooms.
+
+If you did not do a cold boot, this command will fail. So, start
+over from the beginning or go back to your PC and forget this
+nonsense.
 
 # Booting the kernel
 
