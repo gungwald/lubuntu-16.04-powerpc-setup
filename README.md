@@ -68,6 +68,12 @@ at all under Kernel 5.x.
 With Kernel 4.x it seems to be necessary to use video=offb:off to get X
 to start with the fbdev driver. Nouveau still does not work.
 
+# Missing Step
+
+You also have to uncomment blacklisted nvidiafb module in /etc/modprobe.d.
+
+# Machine Info
+
 /proc/cpuinfo
 processor	: 0
 cpu		: 7450, altivec supported
