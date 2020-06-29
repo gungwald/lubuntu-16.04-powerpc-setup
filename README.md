@@ -68,6 +68,26 @@ at all under Kernel 5.x.
 With Kernel 4.x it seems to be necessary to use video=offb:off to get X
 to start with the fbdev driver. Nouveau still does not work.
 
+OR, using this boot parameter:
+
+    video=nvidiafb:1280x1024-16
+
+# Partitioning
+
+The install software will repartition the drive and then go on with
+the install. But this never works. The machine has to be rebooted
+after the repartition or nothing done after the repartition will
+actually work, even though it seems to during the install. You
+then have to redo the whole installation process using the same
+exact partitioning scheme. I'm not sure what the best way to handle
+this is. Possibly to abort the install and reboot right after
+the new partition table is written to disk. Then restart the
+install using the same partitioning scheme.
+
+The install program should really force a reboot after partitioning
+and then resume at the point right after the partitioning after the
+reboot.
+
 # Missing Step
 
 You also have to uncomment blacklisted nvidiafb module in /etc/modprobe.d.
