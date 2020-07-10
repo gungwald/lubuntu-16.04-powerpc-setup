@@ -65,6 +65,9 @@ Nvidia drivers and/or frame buffer drivers do not work with KMS.
 Linux Kernel 5.x does not work with X nouveau or fbdev so X will not run
 at all under Kernel 5.x.
 
+Olivier Laverré
+With Debian (Linux Kernel 5.x), also add to your yaboot.conf:
+append="video=TV-1:d nouveau.config=NvPowerChecks=0". This avoids a black screen. Or add it at the boot prompt: " Linux video=TV-1:d nouveau.config=NvPowerChecks=0".
 With Kernel 4.x it seems to be necessary to use video=offb:off to get X
 to start with the fbdev driver. Nouveau still does not work.
 
