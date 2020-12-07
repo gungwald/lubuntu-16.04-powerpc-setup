@@ -72,7 +72,7 @@ used instead.
 The kernel parameter "nomodeset" is required to turn off KMS because the 
 Nvidia drivers and/or frame buffer drivers do not work with KMS.
 
-    Comment out the blacklist line in /etc/modprobe.d/blacklist-framebuffer.conf.
+    Comment out the "blacklist nvidiafb" line in /etc/modprobe.d/blacklist-framebuffer.conf.
     Add a line in /etc/modprobe.d/blacklist-framebuffer.conf to blacklist nouveau.
     Add these to kernel parameters in /etc/yaboot.conf: nomodeset video=offb:off
     Reinstall yaboot: sudo ybin -v
@@ -88,8 +88,6 @@ at all under Kernel 5.x.
 Olivier Laverré
 With Debian (Linux Kernel 5.x), also add to your yaboot.conf:
 append="video=TV-1:d nouveau.config=NvPowerChecks=0". This avoids a black screen. Or add it at the boot prompt: " Linux video=TV-1:d nouveau.config=NvPowerChecks=0".
-With Kernel 4.x it seems to be necessary to use video=offb:off to get X
-to start with the fbdev driver. Nouveau still does not work.
 
 OR, using this boot parameter:
 
