@@ -1,6 +1,11 @@
-# lubuntu-16.04-powerpc-setup
+# Lubuntu 16.04 on a PowerMac G4/533 (Digital Audio) - Model M5183
 
-Files and instructions on how to setup Lubuntu on a PowerPC Mac
+These instructions are specific to setting up Lubuntu 16.04 on 
+PowerMac G4/533 (Digital Audio).
+https://everymac.com/systems/apple/powermac_g4/specs/powermac_g4_533.html
+
+This particular model has a Nvidia GeForce 2 MX
+which is problematic for Linux.
 
 # Stupid USB boot instructions
 
@@ -57,10 +62,25 @@ If you did not do a cold boot, this command will fail. So, start
 over from the beginning or go back to your PC and forget this
 nonsense.
 
-# Booting the kernel
+# Starting Xorg
+
+## Kernel 4.x
+
+The nouveau kernel driver does not work. The older nvidiafb kernel driver must be
+used instead.
 
 The kernel parameter "nomodeset" is required to turn off KMS because the 
 Nvidia drivers and/or frame buffer drivers do not work with KMS.
+
+    Comment out the blacklist line in /etc/modprobe.d/blacklist-framebuffer.conf.
+    Add a line in /etc/modprobe.d/blacklist-framebuffer.conf to blacklist nouveau.
+    Add these to kernel parameters in /etc/yaboot.conf: nomodeset video=offb:off
+    Reinstall yaboot: sudo ybin -v
+    Reboot
+
+## Kernel 5.x
+
+(Untested by me)
 
 Linux Kernel 5.x does not work with X nouveau or fbdev so X will not run
 at all under Kernel 5.x.
@@ -90,10 +110,6 @@ install using the same partitioning scheme.
 The install program should really force a reboot after partitioning
 and then resume at the point right after the partitioning after the
 reboot.
-
-# Missing Step
-
-You also have to uncomment blacklisted nvidiafb module in /etc/modprobe.d.
 
 # Machine Info
 
